@@ -1,0 +1,17 @@
+{
+    "name": "dish-detail",
+    "version": "1.0.0",
+    "description": "Detail of dishes menu",
+    "main": "index.js",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "author": "",
+    "license": "ISC",
+    "dependencies": {
+        "@polymer/iron-icons": "^3.0.1",
+        "@polymer/lit-element": "^0.7.1",
+        "@polymer/paper-button": "^3.0.1",
+        "@polymer/paper-card": "^3.0.1"
+    }
+}
