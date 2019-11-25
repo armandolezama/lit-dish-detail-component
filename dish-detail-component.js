@@ -2,6 +2,7 @@ import { LitElement, html } from '@polymer/lit-element';
 import '@polymer/paper-card/paper-card.js';
 import '@polymer/iron-icons/iron-icons.js';
 import '@polymer/paper-button/paper-button.js';
+import './node_modules/rate-component/rate-component.js'
 
 export class DishDetailComponent extends LitElement {
     constructor() {
@@ -57,7 +58,7 @@ export class DishDetailComponent extends LitElement {
             
             <section>
             ${this.verifyThereAreDishes() ?
-            html`${this.listOfDishes.map(dish => html`
+                html`${this.listOfDishes.map(dish => html`
                     <paper-card image="${dish.image}">
                         <div class="card-content">
                             <div class="cafe-header">${dish.name}
@@ -66,7 +67,10 @@ export class DishDetailComponent extends LitElement {
                                     <span>${dish.energyValue} cal</span>
                                 </div>
                             </div>
-                            <rating-component rate="0"></rating-component>
+                            <div>
+                                <rate-component rate="${dish.rate}"></rate-component>    
+                            </div>
+                            
                             <p>${dish.price}.00 MXN</p>
                             <p class="cafe-light">${dish.description}</p>
                         </div>
@@ -79,7 +83,7 @@ export class DishDetailComponent extends LitElement {
                     </paper-card>
                 `)}` : 
                 html`<paper-card image="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSaor-vp2mctnOF7bnbY7xWvkoIGKtrekFBHu_4aDhI2xSG1rRH&s">
-
+                <p>Lo siento, aún no se encuentra cargado ningún platillo</p>
                 </paper-card>`}
                 
             </section>

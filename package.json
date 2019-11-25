@@ -12,6 +12,7 @@
         "@polymer/iron-icons": "^3.0.1",
         "@polymer/lit-element": "^0.7.1",
         "@polymer/paper-button": "^3.0.1",
-        "@polymer/paper-card": "^3.0.1"
+        "@polymer/paper-card": "^3.0.1",
+        "rate-component": "github:armandolezama/lit-rating-component"
     }
 }
