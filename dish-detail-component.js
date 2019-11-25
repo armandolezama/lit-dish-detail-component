@@ -7,12 +7,18 @@ import './node_modules/rate-component/rate-component.js'
 export class DishDetailComponent extends LitElement {
     constructor() {
         super();
-        this.listOfDishes = []
+        this.listOfDishes = [];
+        this.showButtons = 1;
     }
 
     static get properties() {
         return {
-            listOfDishes: { type: Array }
+            listOfDishes: { type: Array },
+            showButtons: {
+                type: Number,
+                attribute: 'show-buttons',
+                reflect: true
+            }
         };
     }
 
@@ -59,30 +65,47 @@ export class DishDetailComponent extends LitElement {
             <section>
             ${this.verifyThereAreDishes() ?
                 html`${this.listOfDishes.map(dish => html`
-                    <paper-card image="${dish.image}">
-                        <div class="card-content">
-                            <div class="cafe-header">${dish.name}
-                                <div class="cafe-location cafe-light">
-                                    <iron-icon icon="communication:location-on"></iron-icon>
-                                    <span>${dish.energyValue} cal</span>
+                    ${this.showButtons ? html`<paper-card image="${dish.image}">
+                            <div class="card-content">
+                                <div class="cafe-header">${dish.name}
+                                    <div class="cafe-location cafe-light">
+                                        <iron-icon icon="communication:location-on"></iron-icon>
+                                        <span>${dish.energyValue} cal</span>
+                                    </div>
+                                </div>
+                                <div>
+                                    <rate-component rate="${dish.rate}"></rate-component>    
+                                </div>
+                                
+                                <p>${dish.price}.00 MXN</p>
+                                <p class="cafe-light">${dish.description}</p>
+                            </div>
+                            <div class="card-actions">
+                                <div class="horizontal">
+                                    <paper-button class="info" on-click="__updateDish">Modificar</paper-button>
+                                    <paper-button class="error" on-click="__deleteDish">Eliminar</paper-button>
                                 </div>
                             </div>
-                            <div>
-                                <rate-component rate="${dish.rate}"></rate-component>    
+                        </paper-card>`: html`<paper-card image="${dish.image}">
+                            <div class="card-content">
+                                <div class="cafe-header">${dish.name}
+                                    <div class="cafe-location cafe-light">
+                                        <iron-icon icon="communication:location-on"></iron-icon>
+                                        <span>${dish.energyValue} cal</span>
+                                    </div>
+                                </div>
+                                <div>
+                                    <rate-component rate="${dish.rate}"></rate-component>    
+                                </div>
+                                
+                                <p>${dish.price}.00 MXN</p>
+                                <p class="cafe-light">${dish.description}</p>
                             </div>
-                            
-                            <p>${dish.price}.00 MXN</p>
-                            <p class="cafe-light">${dish.description}</p>
-                        </div>
-                        <div class="card-actions">
-                            <div class="horizontal">
-                                <paper-button class="info" on-click="__updateDish">Modificar</paper-button>
-                                <paper-button class="error" on-click="__deleteDish">Eliminar</paper-button>
-                            </div>
-                        </div>
-                    </paper-card>
+                        </paper-card>` }
+                        
                 `)}` : 
-                html`<paper-card image="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSaor-vp2mctnOF7bnbY7xWvkoIGKtrekFBHu_4aDhI2xSG1rRH&s">
+                html`
+                <paper-card image="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSaor-vp2mctnOF7bnbY7xWvkoIGKtrekFBHu_4aDhI2xSG1rRH&s">
                 <p>Lo siento, aún no se encuentra cargado ningún platillo</p>
                 </paper-card>`}
                 
